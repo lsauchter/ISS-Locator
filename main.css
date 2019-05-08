@@ -1,1 +1,15 @@
-#mapid { height: 180px; }
+#mapid { height: 250px; }
+
+h1 {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.distance {
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 50%;
+}

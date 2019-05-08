@@ -9,11 +9,21 @@
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
    crossorigin=""></script>
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <title>API Test</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+      <header role="header">
+          <h1>International Space Station</h1>
+      </header>
+      <main role="main">
      <div id="mapid"></div>
+     <input type="button" class="distance" value="Click to show distance from me">
+     <div class="distanceData hidden">
+        <input type="button" class="passCount" value="Update">
+     </div>
+     </main>
      <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
