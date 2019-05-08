@@ -37,7 +37,7 @@ function stationLocation () {
      .catch(error => console.log(error));
   }
 
-  function mapISS(lat, lon) {
+function mapISS(lat, lon) {
     iss.setLatLng([lat, lon]);
     circle.setLatLng([lat, lon]);
     mymap.panTo([lat, lon], animate=true);
@@ -45,21 +45,28 @@ function stationLocation () {
 }
 
     
-  function getStationPasses() {
+function getStationPasses() {
     $.ajax({
         url: 'http://api.open-notify.org/iss-pass.json?lat=35&lon=-78&callback=logStationPasses',
         dataType: "jsonp"
     })
 }
 
-  function logStationPasses(response) {
+function logStationPasses(response) {
       console.log(response);
       //need error catch
-  }
+}
+
+function listenForDistance() {
+    $(".distance").on('click', event => {
+        L.control.locate().addTo(mymap);
+    })
+}
   
-  function startTracking() {
+function startTracking() {
   stationLocation();
   createMap();
-  }
+  listenForDistance()
+}
 
-  $(startTracking)
+$(startTracking)
