@@ -43,10 +43,10 @@ function createMap () {
 }
 
 function stationLocation () {
-    fetch('http://api.open-notify.org/iss-now.json')
+    fetch('https://api.wheretheiss.at/v1/satellites/25544')
     .then(response => response.json())
      .then(responseJson => {
-         mapISS(responseJson.iss_position.latitude, responseJson.iss_position.longitude)
+         mapISS(responseJson.latitude, responseJson.longitude)
      })
      .catch(error => console.log(error));
   }
@@ -61,7 +61,7 @@ function mapISS(lat, lon) {
     
 function getStationPasses() {
     $.ajax({
-        url: 'http://api.open-notify.org/iss-pass.json?lat=35&lon=-78&callback=logStationPasses',
+        url: 'https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=35&lon=-78&callback=logStationPasses',
         dataType: "jsonp"
     })
     logStationPasses(response)
@@ -79,10 +79,11 @@ function listenForDistance() {
 }
   
 function startTracking() {
+
   stationLocation();
   createMap();
   listenForDistance();
-  getStationPasses();
+  //getStationPasses();
 }
 
 $(startTracking)
