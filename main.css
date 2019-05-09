@@ -1,5 +1,6 @@
 * {
     font-family: 'Open sans', sans-serif;
+    box-sizing: border-box;
 }
 
 #mapid { height: 250px; }
@@ -13,8 +14,13 @@ h1 {
     display: none;
 }
 
-.distance {
-    margin-left: 25%;
-    margin-top: 10%;
-    width: 50%;
+.distanceData {
+    margin-left: Auto;
+    margin-top: Auto;
+    width: 100%;
+    padding: 10%;
 }
+
+.leaflet-control-locate a {
+    padding: 0;
+  }

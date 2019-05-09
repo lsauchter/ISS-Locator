@@ -1,6 +1,8 @@
 let iss;
 let circle;
 let mymap;
+let locate;
+let user;
 
 function createMap () {
     mymap = L.map('mapid').setView([0, 0], 2);
@@ -12,10 +14,22 @@ function createMap () {
     accessToken: 'pk.eyJ1IjoibHNhdWNodGVyIiwiYSI6ImNqdmI4cTFyYTA0eWw0M210YnN2azR6N20ifQ.uYKT4OinmcNs0pgAViOuFw'
     }).addTo(mymap);
 
+    locate = L.control.locate({
+        setView: false,
+    }).addTo(mymap);
+    // .extend({
+    //     onAdd: function(map) {
+    //         user = {
+    //             lat: map.latitude,
+    //             lon: map.longitude
+    //         }
+    //     }
+    // });
+
     const ISSIcon = L.icon({
     iconUrl: 'images/issIcon.png',
     iconSize: [50, 40],
-    iconAnchor: [25, 25],
+    iconAnchor: [25, 15],
     });
 
     circle = L.circle([0, 0], 1500e3, 
@@ -50,10 +64,12 @@ function getStationPasses() {
         url: 'http://api.open-notify.org/iss-pass.json?lat=35&lon=-78&callback=logStationPasses',
         dataType: "jsonp"
     })
+    logStationPasses(response, user)
 }
 
-function logStationPasses(response) {
+function logStationPasses(response, user) {
       console.log(response);
+      console.log(user);
       //need error catch
 }
 
