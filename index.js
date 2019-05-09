@@ -64,12 +64,11 @@ function getStationPasses() {
         url: 'http://api.open-notify.org/iss-pass.json?lat=35&lon=-78&callback=logStationPasses',
         dataType: "jsonp"
     })
-    logStationPasses(response, user)
+    logStationPasses(response)
 }
 
-function logStationPasses(response, user) {
+function logStationPasses(response) {
       console.log(response);
-      console.log(user);
       //need error catch
 }
 
@@ -82,7 +81,8 @@ function listenForDistance() {
 function startTracking() {
   stationLocation();
   createMap();
-  listenForDistance()
+  listenForDistance();
+  getStationPasses();
 }
 
 $(startTracking)
