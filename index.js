@@ -13,8 +13,8 @@ class Map {
             iconSize: [50, 40],
             iconAnchor: [25, 15],
             })}).addTo(this.mymap);
-        this.locateUser = this.userLocation();
         this.locateISS = this.stationLocation();
+        this.refreshData = this.refreshData();
     }
 
     addLayer() {
@@ -24,12 +24,6 @@ class Map {
             id: 'mapbox.satellite',
             accessToken: 'pk.eyJ1IjoibHNhdWNodGVyIiwiYSI6ImNqdmI4cTFyYTA0eWw0M210YnN2azR6N20ifQ.uYKT4OinmcNs0pgAViOuFw'
             }).addTo(this.mymap);
-    }
-
-    userLocation(){
-        L.control.locate({
-            setView: false,
-        }).addTo(this.mymap);
     }
 
     stationLocation () {
@@ -45,7 +39,10 @@ class Map {
         this.iss.setLatLng([lat, lon]);
         this.circle.setLatLng([lat, lon]);
         this.mymap.panTo([lat, lon]);
-        setInterval(this.stationLocation.bind(this), 5000); 
+    }
+
+    refreshData() {
+        setInterval(this.stationLocation.bind(this), 5000);
     }
 }
     
