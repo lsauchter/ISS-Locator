@@ -45,9 +45,27 @@ class Map {
         setInterval(this.stationLocation.bind(this), 5000);
     }
 }
-    
-function getStationPasses() {
-    fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=35&lon=-78')
+
+function getUserLocation() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            function success(position) {
+            getStationPasses(position);
+            },
+            function error(error_message) {
+                //call function for distance data replace HTML with zipcode entry
+            console.error(`An error has occured while retrieving location`, error_message)
+            }) 
+        }
+    else {
+        // geolocation is not supported
+        // call function for distance data replace HTML with zipcode entry
+        console.log('geolocation is not enabled on this browser')
+      }
+}
+
+function getStationPasses(position) {
+    fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude)
     .then(response => response.json())
      .then(responseJson => logStationPasses(responseJson))
      .catch(error => console.log(error));
@@ -66,7 +84,6 @@ function listenForDistance() {
   
 function startTracking() {
   new Map();
-  getStationPasses();
 }
 
 $(startTracking)

@@ -19,6 +19,7 @@ h1 {
     margin-top: Auto;
     width: 100%;
     padding: 10%;
+    text-align: center;
 }
 
 .leaflet-control-locate a {
