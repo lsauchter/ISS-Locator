@@ -46,42 +46,76 @@ class Map {
     }
 }
 
-function getUserLocation() {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            function success(position) {
-            getStationPasses(position);
-            },
-            function error(error_message) {
-                //call function for distance data replace HTML with zipcode entry
-            console.error(`An error has occured while retrieving location`, error_message)
-            }) 
+class Location {
+     constructor() {
+         this.userLocation = this.getUserLocation();
+         //userTimeZone value set by getTimeZone method
+         this.userTimeZone = "";
+         this.passNumber = 5;
+     }
+
+    getUserLocation() {
+        let self = this;
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                function success(position) {
+                self.getTimeZone(position.coords.latitude, position.coords.longitude);
+                self.getStationPasses(position.coords.latitude, position.coords.longitude);
+                self.updatePasses(position.coords.latitude, position.coords.longitude);
+                },
+                function error(error_message) {
+                    //call function for distance data replace HTML with zipcode entry
+                console.error(`An error has occured while retrieving location`, error_message)
+                }) 
+            }
+        else {
+            // geolocation is not supported
+            // call function for distance data replace HTML with zipcode entry
+            console.log('geolocation is not enabled on this browser')
         }
-    else {
-        // geolocation is not supported
-        // call function for distance data replace HTML with zipcode entry
-        console.log('geolocation is not enabled on this browser')
-      }
+    }
+
+    getTimeZone(lat, lon) {
+        this.userTimeZone = fetch('https://api.timezonedb.com/v2.1/get-time-zone?key=67Y5YZWKTV5R&format=json&fields=zoneName&by=position&lat='
+        + lat + '&lng=' + lon)
+        .then(response => response.json())
+        .then(responseJson => {return responseJson.zoneName})
+        .catch(error => console.log(error));
+    }
+
+    getStationPasses(lat, lon) {
+        fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=' + lat + '&lon=' + lon + '&n=' + this.passNumber)
+        .then(response => response.json())
+        .then(responseJson => {console.log(responseJson); this.displayStationPasses(responseJson.response);})
+        .catch(error => console.log(error));
+    }
+
+    displayStationPasses(dates) {
+        $(".distanceData").html(`<h3>ISS will be visible:</h3>
+        <ul class="distanceItems"></ul>
+        <form class="numberForm">
+        <legend>Number of passes to show</legend>
+        <input class="number" type="number" min="1" max="100">
+        <input type="submit" class="passCount" value="Update">
+        </form>`);
+        dates.map(d => {
+            let date = new Date(d.risetime * 1000);
+            let options = { hour12: true};
+        $('.distanceItems').append('<li>' + date.toLocaleString(options) + '</li>');
+        })
+    }
+
+    updatePasses(lat, lon) {
+        $(".distanceData").on("click", ".passCount", event => {
+            event.preventDefault();
+            const number = $(".number").val();
+            console.log(number);
+            this.passNumber = number;
+            this.getStationPasses(lat, lon);
+        });
+    }
 }
 
-function getStationPasses(position) {
-    fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude)
-    .then(response => response.json())
-     .then(responseJson => logStationPasses(responseJson))
-     .catch(error => console.log(error));
-}
-
-function logStationPasses(response) {
-      console.log(response);
-      //need error catch
-}
-
-function listenForDistance() {
-    $(".distance").on('click', event => {
-        L.control.locate().addTo(mymap);
-    })
-}
-  
 function startTracking() {
   new Map();
 }

@@ -25,3 +25,12 @@ h1 {
 .leaflet-control-locate a {
     padding: 0;
   }
+
+li {
+    list-style: none;
+    padding-top: 5px;
+}
+
+.numberForm {
+    display: inline;
+}
