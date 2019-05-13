@@ -94,7 +94,9 @@ class Location {
     }
 
     zipCodeLocation(zipCode) {
-        fetch('https://www.zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
+        fetch('https://www.zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees', {
+            mode: 'cors'
+        })
         .then(response => response.json())
         .then(responseJson => {this.getStationPasses(responseJson.lat, responseJson.lng); this.updatePasses(responseJson.lat, responseJson.lng);})
         .catch(error => console.log(error));
