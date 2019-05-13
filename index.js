@@ -52,6 +52,8 @@ class Location {
          //userTimeZone value set by getTimeZone method
          this.userTimeZone = "";
          this.passNumber = 5;
+         //key for zipCode to lat/lon conversion
+         this.apiKey = 'eEtaJWudoHBiWAlpbQ5IDsv7CcTAC49VZ5oqkbFDt2oXbavGLbVI1eNCglhv0bw8';
      }
 
     getUserLocation() {
@@ -59,27 +61,42 @@ class Location {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 function success(position) {
-                self.getTimeZone(position.coords.latitude, position.coords.longitude);
-                self.getStationPasses(position.coords.latitude, position.coords.longitude);
-                self.updatePasses(position.coords.latitude, position.coords.longitude);
+                    self.getStationPasses(position.coords.latitude, position.coords.longitude);
+                    self.updatePasses(position.coords.latitude, position.coords.longitude);
                 },
-                function error(error_message) {
-                    //call function for distance data replace HTML with zipcode entry
-                console.error(`An error has occured while retrieving location`, error_message)
+                function error() {
+                    self.errorMessage();
                 }) 
             }
         else {
-            // geolocation is not supported
-            // call function for distance data replace HTML with zipcode entry
-            console.log('geolocation is not enabled on this browser')
+            console.log('geolocation is not enabled on this browser');
+            this.errorMessage();
         }
     }
 
-    getTimeZone(lat, lon) {
-        this.userTimeZone = fetch('https://api.timezonedb.com/v2.1/get-time-zone?key=67Y5YZWKTV5R&format=json&fields=zoneName&by=position&lat='
-        + lat + '&lng=' + lon)
+    errorMessage() {
+        $(".distanceData").html(`<p class="error">An error has occured while retrieving location.</p>
+        <form class="zipCode">
+        <legend>Please enter your zipcode</legend>
+        <input class="zip" type="number">
+        <input type="submit" class="search" value="Search">
+        </form>`)
+        this.zipCodeForm();
+    }
+
+    zipCodeForm() {
+        $(".distanceData").on("click", ".search", event => {
+            event.preventDefault();
+            const zipCode = $(".zip").val();
+            console.log(zipCode);
+            this.zipCodeLocation(zipCode);
+        })
+    }
+
+    zipCodeLocation(zipCode) {
+        fetch('https://www.zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
         .then(response => response.json())
-        .then(responseJson => {return responseJson.zoneName})
+        .then(responseJson => {this.getStationPasses(responseJson.lat, responseJson.lng); this.updatePasses(responseJson.lat, responseJson.lng);})
         .catch(error => console.log(error));
     }
 
