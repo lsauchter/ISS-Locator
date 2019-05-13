@@ -88,7 +88,6 @@ class Location {
         $(".distanceData").on("click", ".search", event => {
             event.preventDefault();
             const zipCode = $(".zip").val();
-            console.log(zipCode);
             this.zipCodeLocation(zipCode);
         })
     }
@@ -103,7 +102,7 @@ class Location {
     getStationPasses(lat, lon) {
         fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=' + lat + '&lon=' + lon + '&n=' + this.passNumber)
         .then(response => response.json())
-        .then(responseJson => {console.log(responseJson); this.displayStationPasses(responseJson.response);})
+        .then(responseJson => this.displayStationPasses(responseJson.response))
         .catch(error => console.log(error));
     }
 
@@ -126,7 +125,6 @@ class Location {
         $(".distanceData").on("click", ".passCount", event => {
             event.preventDefault();
             const number = $(".number").val();
-            console.log(number);
             this.passNumber = number;
             this.getStationPasses(lat, lon);
         });
