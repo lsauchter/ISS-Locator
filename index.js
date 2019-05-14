@@ -49,8 +49,6 @@ class Map {
 class Location {
      constructor() {
          this.userLocation = this.getUserLocation();
-         //userTimeZone value set by getTimeZone method
-         this.userTimeZone = "";
          this.passNumber = 5;
          //key for zipCode to lat/lon conversion
          this.apiKey = 'eEtaJWudoHBiWAlpbQ5IDsv7CcTAC49VZ5oqkbFDt2oXbavGLbVI1eNCglhv0bw8';
@@ -93,10 +91,11 @@ class Location {
     }
 
     zipCodeLocation(zipCode) {
-        fetch('https://cors-anywhere.herokuapp.com/zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
+        fetch('https://zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
         .then(response => response.json())
         .then(responseJson => {this.getStationPasses(responseJson.lat, responseJson.lng); this.updatePasses(responseJson.lat, responseJson.lng);})
         .catch(error => console.log(error));
+        //add limit exceeded message - check API for error message
     }
 
     getStationPasses(lat, lon) {
