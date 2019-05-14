@@ -2,15 +2,9 @@ class Map {
     constructor(){
         this.mymap = L.map('mapid').setView([0, 0], 2);
         this.layer = this.addLayer();
-        this.circle = L.circle([0, 0], 1500e3, 
-            {color: "#DCDCDC",
-            opacity: 0.6,
-            weight: 2,
-            fillColor: "#000080",
-            fillOpacity: 0.3}).addTo(this.mymap);
         this.iss = L.marker([0, 0], {icon: L.icon({
             iconUrl: 'images/issIcon.png',
-            iconSize: [50, 40],
+            iconSize: [85, 80],
             iconAnchor: [25, 15],
             })}).addTo(this.mymap);
         this.locateISS = this.stationLocation();
@@ -37,7 +31,6 @@ class Map {
 
     mapISS(lat, lon) {
         this.iss.setLatLng([lat, lon]);
-        this.circle.setLatLng([lat, lon]);
         this.mymap.panTo([lat, lon]);
     }
 
@@ -52,10 +45,17 @@ class Location {
          this.passNumber = 5;
          //key for zipCode to lat/lon conversion
          this.apiKey = 'eEtaJWudoHBiWAlpbQ5IDsv7CcTAC49VZ5oqkbFDt2oXbavGLbVI1eNCglhv0bw8';
+         this.mapSize = this.mapSize();
      }
+
+    //This adds a class to change the size of the map on smaller devices
+    mapSize() {
+        $("#mapid").addClass("smallerMap");
+    }
 
     getUserLocation() {
         let self = this;
+        $(".distanceData").append(`<i class="fas fa-3x fa-spinner fa-pulse"></i>`);
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 function success(position) {
@@ -106,7 +106,7 @@ class Location {
     }
 
     displayStationPasses(dates) {
-        $(".distanceData").html(`<h3>ISS will be visible:</h3>
+        $(".distanceData").html(`<h2 class="dataHeader">ISS will be visible:</h2>
         <ul class="distanceItems"></ul>
         <form class="numberForm">
         <legend>Number of passes to show</legend>
@@ -130,8 +130,13 @@ class Location {
     }
 }
 
+function listenForLocation() {
+    $(".getLocation").click(function() {new Location();})
+}
+
 function startTracking() {
   new Map();
+  listenForLocation();
 }
 
 $(startTracking)
