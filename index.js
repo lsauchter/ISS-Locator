@@ -35,7 +35,7 @@ class Map {
     }
 
     refreshData() {
-        setInterval(this.stationLocation.bind(this), 5000);
+        setInterval(this.stationLocation.bind(this), 6500);
     }
 }
 
@@ -106,13 +106,17 @@ class Location {
     }
 
     displayStationPasses(dates) {
-        $(".distanceData").html(`<h2 class="dataHeader">ISS will be visible:</h2>
+        $("iframe").removeClass("hidden");
+        $(".distanceData").html(`<div><h2 class="dataHeader">ISS will be visible on </h2>
+        <i class="far fa-lg fa-clock"></i></div>
+        <div>
         <ul class="distanceItems"></ul>
         <form class="numberForm">
         <legend>Number of passes to show</legend>
         <input class="number" type="number" min="1" max="100">
         <input type="submit" class="passCount" value="Update">
-        </form>`);
+        </form>
+        </div>`);
         dates.map(d => {
             let date = new Date(d.risetime * 1000);
             let options = { hour12: true};

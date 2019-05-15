@@ -40,26 +40,27 @@ h1 {
 
 ul {
     padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 li {
     list-style: none;
-    padding: 5px;
+    padding: 8px;
     font-size: 14pt;
     text-shadow: none;
-    margin-top: 2%;
+    margin: 5px;
+}
+
+ul li:nth-child(even) {
+    background: #1C3D5A;
 }
 
 ul li:nth-child(odd) {
     background: #2779BD;
 }
 
-ul li:nth-child(even) {
-    background: #6CB2EB;
-}
-
 .numberForm, .zipCode {
-    display: inline;
     text-align: center;
     font-size: 14pt;
 }
@@ -92,6 +93,11 @@ h2 {
     font-weight: bolder;
 }
 
+.dataHeader {
+    width: 33%;
+    display: inline;
+}
+
 .error {
     color: red;
 }
@@ -103,6 +109,10 @@ p {
 .fa-spinner {
     color: white;
     margin-top: 20px;
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (max-width: 649px) {
@@ -118,5 +128,21 @@ p {
     .numberForm {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    ul {
+        width: 100%;
+    }
+
+    li {
+        margin: 2%;
+    }
+
+    .numberForm, .zipCode {
+        display: inline;
+    }
+
+    iframe {
+        display: none;
     }
 }
