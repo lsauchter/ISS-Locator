@@ -35,7 +35,7 @@ class Map {
     }
 
     refreshData() {
-        setInterval(this.stationLocation.bind(this), 6500);
+        setInterval(this.stationLocation.bind(this), 22000);
     }
 }
 
