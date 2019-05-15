@@ -18,11 +18,13 @@ body {
 h1 {
     text-align: center;
     font-family: 'Gugi', cursive;
+
     text-shadow:
     -1px -1px 0 #000,  
      1px -1px 0 #000,
      -1px 1px 0 #000,
       1px 1px 0 #000;
+  
 }
 
 .distanceData {
@@ -48,6 +50,10 @@ li {
     list-style: none;
     padding: 8px;
     font-size: 14pt;
+    text-shadow: none;
+    margin: 5px;
+}
+
     text-shadow: none;
     margin: 5px;
 }
@@ -105,6 +111,9 @@ h2 {
 p {
     font-size: 14pt;
 }
+
+.hidden {
+    display: none;
 
 .fa-spinner {
     color: white;
