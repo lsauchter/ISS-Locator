@@ -1,17 +1,17 @@
 * {
     font-family: 'Open sans', sans-serif;
     box-sizing: border-box;
+    color: white;
 }
 
-#mapid { height: 250px; }
+#mapid {
+    height: 250px;
+    border: 2px solid #DCDCDC;
+}
 
 h1 {
     text-align: center;
     font-family: 'Gugi', cursive;
-}
-
-.hidden {
-    display: none;
 }
 
 .distanceData {
@@ -22,22 +22,22 @@ h1 {
     text-align: center;
 }
 
-.leaflet-control-locate a {
-    padding: 0;
-  }
-
 ul {
     padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 li {
     list-style: none;
-    padding-top: 5px;
+    padding: 8px;
+    font-size: 14pt;
+    margin: 5px;
 }
 
-.numberForm {
-    display: inline;
+.numberForm, .zipCode {
     text-align: center;
+    font-size: 14pt;
 }
 
 .number {
@@ -50,10 +50,27 @@ legend {
     font-weight: bold;
 }
 
-h3 {
+input {
+    font-size: 14pt;
+    color: black;
+    background: white;
+    border: 2px solid white;
+    padding: 4px;
+}
+
+
+h2 {
     font-weight: bolder;
 }
 
 .error {
     color: red;
+}
+
+p {
+    font-size: 14pt;
+}
+
+.hidden {
+    display: none;
 }
