@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -16,12 +17,15 @@
           <h1>International Space Station</h1>
       </header>
       <main role="main">
+      <div class="start">
+          <i class="fas fa-5x fa-rocket"></i>
+      </div>
      <div id="mapid"></div>
+     <!-- <iframe class="hidden" width="480" height="270" src="http://www.ustream.tv/embed/17074538?html5ui=1&autoplay=true" scrolling="no" allowfullscreen webkitallowfullscreen frameborder="0" style="border: 0 none transparent;"></iframe> -->
      <div class="distanceData">
        <div class="intro">
-       <h3>When can I see the International Space Station?</h3>
-       <p>Click below to find out!</p>
-        <input type="button" class="getLocation" onclick="new Location()" value="Find my location">
+       <h2>When can I see the International Space Station?</h2>
+        <input type="button" class="getLocation" value="Click to find out!">
         </div>
       </div>
      </main>
