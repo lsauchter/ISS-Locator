@@ -1,14 +1,15 @@
 * {
     font-family: 'Open sans', sans-serif;
     box-sizing: border-box;
-    color: white;
+    /* color: white; */
+    color: black;
 }
 
-body {
+/* body {
     background: linear-gradient(rgb(18, 40, 58, 0.6), rgb(18, 40, 58, 0.6)), url(https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
     center;
     background-size: cover;
-}
+} */
 
 #mapid {
     height: 250px;
@@ -28,11 +29,11 @@ h1 {
 
 .distanceData {
     margin-left: Auto;
-    margin-top: Auto;
+    margin-right: Auto;
     width: 100%;
     padding: 20px;
-    /* text-align: center;
-    text-shadow:
+    text-align: center;
+    /* text-shadow:
     -1px -1px 0 #000,  
      1px -1px 0 #000,
      -1px 1px 0 #000,
@@ -80,7 +81,7 @@ input {
     font-size: 14pt;
     color: black;
     background: white;
-    border: 2px solid white;
+    border: 2px solid black;
     padding: 4px;
 }
 
