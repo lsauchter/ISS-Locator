@@ -4,6 +4,12 @@
     color: white;
 }
 
+body {
+    background: linear-gradient(rgb(18, 40, 58, 0.6), rgb(18, 40, 58, 0.6)), url(https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
+    center;
+    background-size: cover;
+}
+
 #mapid {
     height: 250px;
     border: 2px solid #DCDCDC;
@@ -12,6 +18,13 @@
 h1 {
     text-align: center;
     font-family: 'Gugi', cursive;
+
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
+  
 }
 
 .distanceData {
@@ -20,6 +33,11 @@ h1 {
     width: 100%;
     padding: 20px;
     text-align: center;
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
 }
 
 ul {
@@ -32,7 +50,20 @@ li {
     list-style: none;
     padding: 8px;
     font-size: 14pt;
+    text-shadow: none;
     margin: 5px;
+}
+
+    text-shadow: none;
+    margin: 5px;
+}
+
+ul li:nth-child(even) {
+    background: #1C3D5A;
+}
+
+ul li:nth-child(odd) {
+    background: #2779BD;
 }
 
 .numberForm, .zipCode {
@@ -58,9 +89,19 @@ input {
     padding: 4px;
 }
 
+.getLocation:hover, .passCount:hover, .search:hover {
+    cursor: pointer;
+    background: #DCDCDC;
+    border: 2px solid #DCDCDC;
+}
 
 h2 {
     font-weight: bolder;
+}
+
+.dataHeader {
+    width: 33%;
+    display: inline;
 }
 
 .error {
@@ -73,4 +114,44 @@ p {
 
 .hidden {
     display: none;
+
+.fa-spinner {
+    color: white;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 649px) {
+    h1 {
+        font-size: 20pt;
+    }
+
+    h2 {
+        font-size: 16pt;
+        margin-top: 0;
+    }
+
+    .numberForm {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    ul {
+        width: 100%;
+    }
+
+    li {
+        margin: 2%;
+    }
+
+    .numberForm, .zipCode {
+        display: inline;
+    }
+
+    iframe {
+        display: none;
+    }
 }
