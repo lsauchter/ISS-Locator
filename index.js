@@ -1,10 +1,11 @@
 class Map {
     constructor(){
+        //L refers to a variable defined by the leaflet script included in the HTML file
         this.mymap = L.map('mapid').setView([0, 0], 2);
         this.layer = this.addLayer();
         this.iss = L.marker([0, 0], {icon: L.icon({
             iconUrl: 'images/issIcon.png',
-            iconSize: [85, 80],
+            iconSize: [110, 105],
             iconAnchor: [25, 15],
             })}).addTo(this.mymap);
         this.locateISS = this.stationLocation();
@@ -26,7 +27,7 @@ class Map {
          .then(responseJson => {
             this.mapISS(responseJson.iss_position.latitude, responseJson.iss_position.longitude)
          })
-         .catch(error => console.log(error));
+         .catch(error => alert(`${error}: Please try again later`));
     }
 
     mapISS(lat, lon) {
@@ -34,6 +35,8 @@ class Map {
         this.mymap.panTo([lat, lon]);
     }
 
+    //Maxium api call rate is 200/hour so don't change this value!
+    //You need the extra two seconds of room to leave space for the ISS pass fetch
     refreshData() {
         setInterval(this.stationLocation.bind(this), 22000);
     }
@@ -45,17 +48,13 @@ class Location {
          this.passNumber = 5;
          //key for zipCode to lat/lon conversion
          this.apiKey = 'eEtaJWudoHBiWAlpbQ5IDsv7CcTAC49VZ5oqkbFDt2oXbavGLbVI1eNCglhv0bw8';
-         this.mapSize = this.mapSize();
      }
-
-    //This adds a class to change the size of the map on smaller devices
-    mapSize() {
-        $("#mapid").addClass("smallerMap");
-    }
 
     getUserLocation() {
         let self = this;
         $(".distanceData").append(`<i class="fas fa-3x fa-spinner fa-pulse"></i>`);
+        //The if...in checks for geolocation support within the browser
+        //Users choose to allow or deny only IF geolcation is supported
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 function success(position) {
@@ -94,29 +93,29 @@ class Location {
         fetch('https://zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
         .then(response => response.json())
         .then(responseJson => {this.getStationPasses(responseJson.lat, responseJson.lng); this.updatePasses(responseJson.lat, responseJson.lng);})
-        .catch(error => console.log(error));
-        //add limit exceeded message - check API for error message
+        .catch(error => alert(`${error}: Please try again later`));
     }
 
     getStationPasses(lat, lon) {
         fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-pass.json?lat=' + lat + '&lon=' + lon + '&n=' + this.passNumber)
         .then(response => response.json())
         .then(responseJson => this.displayStationPasses(responseJson.response))
-        .catch(error => console.log(error));
+        .catch(error => alert(`${error}: Please try again later`));
     }
 
     displayStationPasses(dates) {
         $("iframe").removeClass("hidden");
-        $(".distanceData").html(`<div><h2 class="dataHeader">ISS will be visible on </h2>
+        $(".distanceData").html(`<div class="dataLabel"><i class="far fa-lg fa-clock"></i><h2 class="dataHeader"> ISS will be visible on</h2>
         <i class="far fa-lg fa-clock"></i></div>
-        <div>
+        <div class="dataList">
+        <img class="issLarge" src="images/issLarge.png" alt="International Space Station drawing" />
         <ul class="distanceItems"></ul>
+        </div>
         <form class="numberForm">
         <legend>Number of passes to show</legend>
         <input class="number" type="number" min="1" max="100">
         <input type="submit" class="passCount" value="Update">
-        </form>
-        </div>`);
+        </form>`);
         dates.map(d => {
             let date = new Date(d.risetime * 1000);
             let options = { hour12: true};
@@ -138,9 +137,26 @@ function listenForLocation() {
     $(".getLocation").click(function() {new Location();})
 }
 
-function startTracking() {
-  new Map();
-  listenForLocation();
+function renderStart() {
+    const options = {
+        duration: "slow",
+        queue: false,
+        complete: function() {
+            $(".start").remove();
+            $("body").removeClass("background1");
+            $("header").removeClass("hidden");
+            $(".distanceData").removeClass("hidden");
+            $("#mapid").show();
+            new Map();
+        }
+    }
+    $("img").fadeOut(options);
 }
 
-$(startTracking)
+function startApp() {
+    $("#mapid").hide();
+    listenForLocation();
+    setTimeout(renderStart, 5000);
+}
+
+$(startApp)

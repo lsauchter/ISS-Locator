@@ -12,21 +12,23 @@
     <title>ISS Tracking</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
-      <header role="banner">
+  <body class="background1">
+      <header role="banner" class="hidden">
           <h1>International Space Station</h1>
       </header>
       <main role="main">
+        <div class="start">
+           <img class="rocket" src="https://cdn.dribbble.com/users/623359/screenshots/3138869/new.gif" alt="video of animated rocket flying into space" />
+        </div>
      <div id="mapid"></div>
-     <!-- <iframe class="hidden" width="480" height="270" src="http://www.ustream.tv/embed/17074538?html5ui=1&autoplay=true" scrolling="no" allowfullscreen webkitallowfullscreen frameborder="0" style="border: 0 none transparent;"></iframe> -->
-     <div class="distanceData">
+     <div class="distanceData hidden">
        <div class="intro">
        <h2>When can I see the International Space Station?</h2>
         <input type="button" class="getLocation" value="Click to find out!">
         </div>
       </div>
      </main>
-     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
   </body>
 </html>
