@@ -120,7 +120,8 @@ class Location {
             let date = new Date(d.risetime * 1000);
             let options = { hour12: true};
         $('.distanceItems').append('<li>' + date.toLocaleString(options) + '</li>');
-        })
+        });
+        location.href="#dataContainer";
     }
 
     updatePasses(lat, lon) {
@@ -134,7 +135,9 @@ class Location {
 }
 
 function listenForLocation() {
-    $(".getLocation").click(function() {new Location();})
+    $(".getLocation").click(function() {
+        new Location();
+    })
 }
 
 function renderStart() {
