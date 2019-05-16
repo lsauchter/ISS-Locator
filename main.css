@@ -10,8 +10,20 @@ body {
     background-size: cover;
 }
 
+.rocket {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.background1 {
+    background: #006B83;
+    height: 100%;
+}
+
 #mapid {
-    height: 250px;
+    height: 300px;
     border: 2px solid #DCDCDC;
 }
 
@@ -41,8 +53,8 @@ h1 {
 
 ul {
     padding-left: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    width: 35%;
 }
 
 li {
@@ -95,8 +107,12 @@ h2 {
 }
 
 .dataHeader {
-    /* width: 33%; */
     display: inline;
+    padding: 0 10px;
+}
+
+.dataLabel {
+    padding-bottom: 10px;
 }
 
 .error {
@@ -105,10 +121,6 @@ h2 {
 
 p {
     font-size: 14pt;
-}
-
-.hidden {
-    display: none;
 }
 
 .fa-spinner {
@@ -120,7 +132,28 @@ p {
     display: none;
 }
 
+.fa-clock {
+    padding: 0;
+}
+
+.dataList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.issLarge {
+    max-width: 325px;
+    width: 35%;
+    height: 100%;
+}
+
 @media screen and (max-width: 649px) {
+    #mapid {
+        height: 250px;
+    }
+    
     h1 {
         font-size: 20pt;
     }
@@ -147,7 +180,7 @@ p {
         display: inline;
     }
 
-    iframe {
+    .issLarge {
         display: none;
     }
 }
