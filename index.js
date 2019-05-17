@@ -38,7 +38,7 @@ class Map {
     //Maxium api call rate is 200/hour so don't change this value!
     //You need the extra two seconds to leave request space for the ISS pass fetch at line 100
     refreshData() {
-        setInterval(this.stationLocation.bind(this), 22000);
+        setInterval(this.stationLocation.bind(this), 25000);
     }
 }
 
