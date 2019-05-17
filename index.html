@@ -12,31 +12,32 @@
    <link href="https://fonts.googleapis.com/css?family=Gugi|Open+Sans" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <title>ISS Tracking</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
+   <link href="main.css" rel="stylesheet" type="text/css" />
   </head>
+  
   <body class="background1">
-      <header role="banner" class="hidden">
-          <h1>International Space Station</h1>
-      </header>
-      <main role="main">
-        <div class="start">
-           <img class="rocket" src="https://cdn.dribbble.com/users/623359/screenshots/3138869/new.gif" alt="video of animated rocket flying into space" />
-        </div>
+    <header role="banner" class="hidden">
+        <h1>International Space Station</h1>
+    </header>
+    <main role="main">
+      <div class="start">
+        <img class="rocket" src="https://cdn.dribbble.com/users/623359/screenshots/3138869/new.gif" alt="video of animated rocket flying into space" />
+      </div>
 
       <section id="mapContainer">
-     <div id="mapid"></div>
-     </section>
-
-     <section id="dataContainer">
-     <div class="distanceData hidden">
-       <div class="intro">
-       <h2>When can I see the International Space Station?</h2>
-        <input type="button" class="getLocation" value="Click to find out!">
-        </div>
-      </div>
+        <div id="mapid"></div>
       </section>
-     </main>
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+      <section id="dataContainer">
+        <div class="distanceData hidden">
+          <div class="intro">
+            <h2>When can I see the International Space Station?</h2>
+            <input type="button" class="getLocation" value="Click to find out!">
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
   </body>
 </html>
