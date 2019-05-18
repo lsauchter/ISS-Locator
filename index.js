@@ -92,7 +92,7 @@ class Location {
     }
 
     zipCodeLocation(zipCode) {
-        fetch('https://zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
+        fetch('https://cors-anywhere.herokuapp.com/zipcodeapi.com/rest/' + this.apiKey +'/info.json/' + zipCode + '/degrees')
         .then(response => response.json())
         .then(responseJson => {this.getStationPasses(responseJson.lat, responseJson.lng); this.updatePasses(responseJson.lat, responseJson.lng);})
         .catch(error => alert(`${error}: Please try again later`));
