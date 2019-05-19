@@ -110,7 +110,7 @@ class Location {
         $('.distanceData').html(`<div class="dataLabel"><i class="far fa-lg fa-clock"></i><h2 class="dataHeader"> ISS will be visible on</h2>
             <i class="far fa-lg fa-clock"></i></div>
             <div class="dataList">
-            <img class="issLarge" src="images/issLarge.png" alt="International Space Station drawing" />
+            <img class="issLarge" src="images/issLarge.png" alt="Drawing of the International Space Station" />
             <ul class="distanceItems"></ul>
             </div>
             <form class="numberForm">
