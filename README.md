@@ -1,5 +1,5 @@
 # ISS-Locator   
-Find out the next time the International Space Station will be visible from your loctation as the map live-tracks the ISS.  
+Find out the next time the International Space Station will be visible from your location as the map live-tracks the ISS.  
 
 
 
