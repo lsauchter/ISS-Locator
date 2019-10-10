@@ -17,7 +17,7 @@ class Map {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox.satellite',
-            accessToken: 'pk.eyJ1IjoibHNhdWNodGVyIiwiYSI6ImNrMWk2ajRreDBmMWwzZHBrb3B0MjZudHcifQ.xdAsAILD2HhQobM0eQBHmA'
+            accessToken: 'pk.eyJ1IjoibHNhdWNodGVyIiwiYSI6ImNqdmI4cTFyYTA0eWw0M210YnN2azR6N20ifQ.uYKT4OinmcNs0pgAViOuFw'
             }).addTo(this.mymap);
     }
 
