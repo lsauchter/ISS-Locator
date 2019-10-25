@@ -150,6 +150,7 @@ function renderStart() {
         complete: function() {
             $('.start').remove();
             $('body').removeClass('background1');
+            $('.star-container').removeClass('hidden');
             $('header').removeClass('hidden');
             $('.distanceData').removeClass('hidden');
             $('#mapid').show();
