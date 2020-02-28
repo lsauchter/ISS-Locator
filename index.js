@@ -22,7 +22,7 @@ class Map {
     }
 
     stationLocation () {
-        fetch('https://cors-anywhere.herokuapp.com/api.open-notify.org/iss-now.json')
+        fetch('https://shielded-falls-70592.herokuapp.com/api.open-notify.org/iss-now.json')
         .then(response => response.json())
         .then(responseJson => {
             this.mapISS(responseJson.iss_position.latitude, responseJson.iss_position.longitude)
@@ -35,10 +35,8 @@ class Map {
         this.mymap.panTo([lat, lon]);
     }
 
-    //Maxium api call rate is 200/hour so don't change this value!
-    //You need the extra two seconds to leave request space for the ISS pass fetch at line 100
     refreshData() {
-        setInterval(this.stationLocation.bind(this), 25000);
+        setInterval(this.stationLocation.bind(this), 5000);
     }
 }
 
