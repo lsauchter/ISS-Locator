@@ -26,7 +26,7 @@ class Map {
         .then(response => response.json())
         .then(responseJson => {
             this.mapISS(responseJson.iss_position.latitude, responseJson.iss_position.longitude)
-         })
+        })
         .catch(error => alert(`${error}: Please try again later`));
     }
 
